@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva de Citas - Eunoia Health</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/estilos.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sección Izquierda -->
+        <div class="left">
+            <img src="/images/logo.png" alt="Eunoia Health Logo" class="logo">
+            <h1><span class="highlight">Bienvenido a</span><br>nuestra página de reservas<br>para citas de <br>psicología</h1>
+        </div>
+
+        <!-- Sección Derecha -->
+        <div class="right">
+            <p>
+                <a th:href="@{/iniciosesion}"><button type="button" class="ver-registro" onclick="">Ver registro</button></a>
+            </p>
+            <h2>Antes de <br>continuar</h2>
+            <p class="pregunta">
+            ¿Cuenta usted con alguna discapacidad visual registrada <br>por el CONADIS?
+            </p>
+            <p class="instrucciones">Teclas de desplazamiento: "F" o "J" <br> Tecla de selección: "ENTER"</p>
+
+            <div class="botones">
+                <button type="button" class="opcion">Discapacidad visual leve, moderada o grave</button>
+                <button type="button" class="opcion">Discapacidad visual casi total o ceguera</button>
+                <button type="button" class="opcion">No cuento con discapacidad visual</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

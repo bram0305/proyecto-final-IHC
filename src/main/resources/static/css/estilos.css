@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sección izquierda */
+.left {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.logo {
+  max-width: 200px;
+  margin-bottom: 20px; /* Elimina espacio innecesario debajo del logo */
+}
+
+.left h1 {
+  font-size: 85px;
+  padding-left: 10%;
+  padding-right: 10%;
+  color: #1E4944;
+  font-weight: 1000;
+  line-height: 1.2;
+  margin: 10px 0 0 0; /* solo un poco de espacio arriba si quieres */
+}
+
+.highlight {
+  background-color: #134e40;
+  color: #ffffff;
+  padding: 5px 10px;
+  display: inline-block;
+}
+
+
+/* Sección derecha */
+.right {
+  flex: 1;
+  background-color: #3aa89e;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.section-indicator {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.ver-registro {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background-color: #ffff;
+  color: #134e40;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.right h2 {
+  font-size: 100px;
+  font-weight: 800;
+  line-height: 1.0;
+  padding-left: 40px;
+  margin-bottom: 0px;
+}
+
+.pregunta {
+  margin-top: 20px;
+  font-size: 50px;
+  padding-left: 40px;
+  margin-bottom: 2px;
+  font-weight: 700;
+}
+
+.instrucciones {
+  font-size: 30px;
+  font-weight: 700;
+  opacity: 0.9;
+  padding-left: 40px;
+}
+
+.botones {
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.opcion {
+  background-color: #ffffff;
+  color: #134e40;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.opcion:hover {
+  background-color: #e0f7f4;
+}
