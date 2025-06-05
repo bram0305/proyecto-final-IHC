@@ -126,3 +126,66 @@ body {
 .opcion:hover {
   background-color: #e0f7f4;
 }
+
+.title{
+  font-size: 80px;
+  font-weight: 900;
+  line-height: 1.0;
+  text-align: center;  /*centra el titulo*/
+  margin-top: 156px; /*baja mas el titulo*/
+}
+
+.subtitle{
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.0;
+  text-align: left;  /*pone a la izquierda el subtitulo*/
+  margin: 92px; /*baja mas el titulo*/
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+  .left, .right {
+    flex: none;
+    width: 100%;
+    min-height: 300px;
+    padding: 20px;
+  }
+  .title {
+    font-size: 48px;
+    margin-top: 40px;
+  }
+  .subtitle {
+    font-size: 28px;
+    margin: 32px 0 0 0;
+  }
+  .logo {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 32px;
+    margin-top: 20px;
+  }
+  .subtitle {
+    font-size: 20px;
+    margin: 16px 0 0 0;
+  }
+  .logo {
+    max-width: 80px;
+  }
+  .container {
+    padding: 0;
+  }
+  .left, .right {
+    padding: 10px;
+    min-height: 150px;
+  }
+}
+
