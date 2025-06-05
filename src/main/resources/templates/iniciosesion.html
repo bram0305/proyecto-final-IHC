@@ -3,16 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Iniciar Sesión</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <div class="left">
-            <img src="/images/logo.png" alt="Eunoia Health Logo" class="logo">
+<body class="bg-gray-100 min-h-screen">
+    <div class="fixed top-4 right-4">
+        <!-- Botón para activar la lectura -->
+        <button onclick="leerPagina()" class="z-50 bg-teal-700 text-white px-4 py-2 rounded shadow hover:bg-teal-800">
+            Escuchar página
+        </button>
+        <a th:href = "@{/}">
+            <button class="z-50 bg-teal-700 text-white px-4 py-2 rounded shadow hover:bg-teal-800">
+                Volver al inicio
+            </button> 
+            <!--hover se subraya al hacer focus con el mouse-->
+        </a>
+    </div>
+    <div class="flex flex-col md:flex-row h-screen">
+        <!-- Sección Izquierda -->
+        <div class="w-full md:w-1/2 flex flex-col justify-center items-center bg-white">
+            <img src="/images/logo.png" alt="Eunoia Health Logo" class="w-100">
         </div>
-        <div class="right">
-            <h1>works</h1>
+        <!-- Sección Derecha -->
+        <div class="w-full md:w-1/2 flex flex-col justify-center items-center" style="background-color:#48A499 ;">
+            <div class="w-full">
+                <!-- Formulario de Inicio de Sesión -->
+                <form class="p-16 space-y-6">
+                    <div class="pb-16">
+                        <h3 class="text-6xl font-bold text-center text-white mb-6">INICIAR SESIÓN</h3>
+                    </div>
+                    <div class="pb-16">
+                        <label class="text-4xl block text-white font-semibold mb-2">Correo electrónico</label>
+                        <input alt="correo electrónico" type="text" class="text-white text-3xl caret-white bg-transparent w-full px-4 py-2 border-b border-white  focus:outline-none cursor-white">
+                    </div>
+                    <div class="pb-16">
+                        <label class="text-4xl block text-white font-semibold mb-2">Contraseña</label>
+                        <input type="password" class="text-white text-3xl caret-white bg-transparent w-full px-4 py-2 border-b border-white  focus:outline-none cursor-white">
+                    </div>
+                    <div class="w-full justify-center items-center flex mt-6">
+                        <button type="submit" class="text-2xl px-10 bg-white font-bold py-2 rounded-lg hover:bg-teal-700 transition" style="color:#1E4944 ;">LOGIN</button>
+                    </div>
+                    <div class="w-full justify-center items-center flex mt-6">
+                        <a th:href = "@{/iniciosesion/registrar}" class="cursor-pointer text-2xl hover:underline decoration-2 block text-white font-semibold mb-2">Registrarse</a> <!--hover se subraya al hacer focus con el mouse-->
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+    <script>
+        function leerPagina() {
+            const texto = `
+                Iniciar sesión.
+                Correo electrónico: campo para ingresar su correo.
+                Contraseña: campo para ingresar su contraseña.
+                Botón para iniciar sesión.
+                Enlace para registrarse si no tiene cuenta.
+            `;
+            const utterance = new window.SpeechSynthesisUtterance(texto);
+            utterance.lang = "es-ES";
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
 </body>
 </html>
