@@ -10,5 +10,18 @@
 <body class="bg-gray-100 min-h-screen">
     <h1>hello world santi pro</h1>
     <h2>hello world rachel pro carreame</h2>
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-4">Datos Personales</h1>
+        <form action="/datospersonales" method="post" class="bg-white p-6 rounded shadow-md">
+            <div class="mb-4">
+                <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="apellido" class="block text-sm font-medium text-gray-700">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            </div>
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Enviar</button>
+        </form>
 </body>
 </html>
