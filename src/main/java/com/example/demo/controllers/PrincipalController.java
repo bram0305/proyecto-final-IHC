@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,5 +35,10 @@ public class PrincipalController {
         }
         flash.addFlashAttribute("mensaje", mensaje);
         return "redirect:/registrar/";
+    }
+
+    @GetMapping("/lading")
+    public String mostrarLading() {
+        return "lading";
     }
 }
