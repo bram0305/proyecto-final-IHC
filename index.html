@@ -1,11 +1,37 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <title>Reserva de Citas - Eunoia Health</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link th:href="@{src\main\resources\static\css\estilos.css}" rel="stylesheet">
 </head>
 <body>
-    <h1>HELLO WORLD</h1>
+    <div class="container">
+        <!-- Sección Izquierda -->
+        <div class="left">
+            <img src="src\main\resources\static\images\logo.png" alt="Eunoia Health Logo" class="logo">
+            <h1><span class="highlight">Bienvenido a</span><br>nuestra página de reservas<br>para citas de <br>psicología</h1>
+        </div>
+
+        <!-- Sección Derecha -->
+        <div class="right">
+            <p>
+                <a th:href="@{src\main\resources\templates\iniciosesion.html}"><button type="button" class="ver-registro" onclick="">Ver registro</button></a>
+            </p>
+            <h2>Antes de <br>continuar</h2>
+            <p class="pregunta">
+            ¿Cuenta usted con alguna discapacidad visual registrada <br>por el CONADIS?
+            </p>
+            <p class="instrucciones">Teclas de desplazamiento: "F" o "J" <br> Tecla de selección: "ENTER"</p>
+
+            <!-- Botones landing -->
+            <div class="botones">
+                <a th:href="@{src\main\resources\templates\lading.html}"><button type="button" class="opcion">Discapacidad visual leve, moderada o grave</button></a>
+                <a th:href="@{src\main\resources\templates\lading.html}"><button type="button" class="opcion">Discapacidad visual casi total o ceguera</button></a>
+                <a th:href="@{src\main\resources\templates\lading.html}"><button type="button" class="opcion">No cuento con discapacidad visual</button></a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
