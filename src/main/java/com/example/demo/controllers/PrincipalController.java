@@ -12,7 +12,7 @@ public class PrincipalController {
 
     @RequestMapping("/")
     public String inicio(){
-        return "index";
+        return "principal";
     }
 
     @RequestMapping("/iniciosesion")
