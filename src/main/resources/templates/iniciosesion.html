@@ -10,7 +10,9 @@
 <body class="bg-gray-100 min-h-screen">
     <div class="fixed top-4 right-4">
         <!-- Botón para activar la lectura -->
-        <button onclick="leerPagina()" class="z-50 bg-teal-700 text-white px-4 py-2 rounded shadow hover:bg-teal-800">
+        <button onclick="leerPagina()"
+        data-lector-texto="Iniciar sesión. Correo electrónico: campo para ingresar su correo. Contraseña: campo para ingresar su contraseña. Botón para iniciar sesión. Enlace para registrarse si no tiene cuenta." 
+        class="z-50 bg-teal-700 text-white px-4 py-2 rounded shadow hover:bg-teal-800">
             Escuchar página
         </button>
         <a th:href = "@{/}">
@@ -51,19 +53,6 @@
             </div>
         </div>
     </div>
-    <script>
-        function leerPagina() {
-            const texto = `
-                Iniciar sesión.
-                Correo electrónico: campo para ingresar su correo.
-                Contraseña: campo para ingresar su contraseña.
-                Botón para iniciar sesión.
-                Enlace para registrarse si no tiene cuenta.
-            `;
-            const utterance = new window.SpeechSynthesisUtterance(texto);
-            utterance.lang = "es-ES";
-            window.speechSynthesis.speak(utterance);
-        }
-    </script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
