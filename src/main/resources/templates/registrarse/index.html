@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+    <div class="fixed top-4 right-4">
+      <!-- Botón para volver a la página de inicio -->
+      <a th:href="@{/iniciosesion/}">
+        <button
+          class="z-50 bg-white text-white px-4 py-2 rounded shadow hover:bg-gray-200"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="40px"
+            viewBox="0 -960 960 960"
+            width="40px"
+            fill="#000000"
+          >
+            <path
+              d="m332.67-427.67 222 222L480-132 132-480l348-348.67 74.67 74.34-222 222h496v104.66h-496Z"
+            />
+          </svg>
+        </button>
+        <!--hover se subraya al hacer focus con el mouse-->
+      </a>
+      <!-- Botón para activar la lectura -->
+      <button
+        onclick="leerPagina()"
+        data-lector-texto="Registrar. Correo electrónico: campo para ingresar su correo. Contraseña: campo para ingresar su contraseña. Confirmar contraseña: campo para confirmar su contraseña. Teléfono: campo para ingresar su número de teléfono. Siguiente: botón para continuar al siguiente paso."
+        class="z-50 bg-white text-white px-4 py-2 rounded shadow hover:bg-gray-200"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="40px"
+          viewBox="0 -960 960 960"
+          width="40px"
+          fill="#000000"
+        >
+          <path
+            d="M582-116.67v-83.13q93.67-28.53 153.5-105.7T795.33-481q0-98.33-59.5-175.83-59.5-77.5-153.83-105.37v-83.13q128.82 28.83 210.58 130.75Q874.33-612.67 874.33-481q0 131.67-81.75 233.58Q710.82-145.5 582-116.67ZM85.67-332v-296.67h176.66l239.67-239v775.34L262.33-332H85.67Zm483 27.33v-352q55.66 21.67 90.66 69.06 35 47.38 35 107.66 0 59.28-35.33 106.95t-90.33 68.33Zm-172-305L307-523.33H191v86.66h116l89.67 87v-260Zm-86 129.67Z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="flex flex-col md:flex-row h-screen">
+      <!-- Sección Izquierda -->
+      <div
+        class="w-full md:w-1/2 flex flex-col justify-center items-center bg-white"
+      >
+        <img src="/images/logo.png" alt="Eunoia Health Logo" class="w-100" />
+      </div>
+      <!-- Sección Derecha -->
+      <div
+        class="w-full md:w-1/2 flex flex-col justify-center items-center"
+        style="background-color: #48a499"
+      >
+        <div class="w-full">
+          <!-- ALERTA DE VALIDACIÓN -->
+          <!-- <div th:if="${res}" class="mb-4">
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center" role="alert">
+              <span th:text="${res}"></span>
+            </div>
+          </div> -->
+          <!-- Formulario de Registro -->
+          <form th:action="@{/registrarse/datos}" method="post" class="p-16 space-y-6">
+            <div class="pb-7">
+              <h3 class="text-6xl font-bold text-center text-white mb-6">
+                REGISTRAR
+              </h3>
+            </div>
+            <div class="pb-7">
+              <label class="text-3xl block text-white font-semibold mb-2"
+                >Correo electrónico</label
+              >
+              <input
+                name="correo"
+                type="text"
+                class="form-control text-white text-3xl caret-white bg-transparent w-full px-4 py-2 border-b border-white focus:outline-none cursor-white"
+              />
+            </div>
+            <div class="pb-7">
+              <label class="text-3xl block text-white font-semibold mb-2"
+                >Contraseña</label
+              >
+              <input
+                name="contra"
+                type="password"
+                class="form-control text-white text-3xl caret-white bg-transparent w-full px-4 py-2 border-b border-white focus:outline-none cursor-white"
+              />
+            </div>
+            <div class="pb-7">
+              <label class="text-3xl block text-white font-semibold mb-2"
+                >Confirmar contraseña</label
+              >
+              <input
+                name="confirmacontra"
+                type="password"
+                class="form-control text-white text-3xl caret-white bg-transparent w-full px-4 py-2 border-b border-white focus:outline-none cursor-white"
+              />
+            </div>
+            <div class="pb-7">
+              <label class="text-3xl block text-white font-semibold mb-2"
+                >Teléfono</label
+              >
+              <input
+                name="tele"
+                type="text"
+                class="form-control text-white text-3xl caret-white bg-transparent w-full px-4 py-2 border-b border-white focus:outline-none cursor-white"
+              />
+            </div>
+            <div class="w-full justify-center items-center flex mt-6">
+              <button
+                id="openModal"
+                type="button"
+                class="text-2xl px-10 bg-white font-bold py-2 rounded-lg hover:bg-teal-700 transition"
+                style="color: #1e4944"
+              >
+                SIGUIENTE
+              </button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+    <script src="/js/script.js"></script>
+
+    <!-- Modal (inicialmente oculto) -->
+<div id="modal" class="relative z-10 hidden" aria-labelledby="dialog-title" role="dialog" aria-modal="true">
+  <div id="modalBackdrop" class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <div id="modalPanel" class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-teal-100 sm:mx-0 sm:size-10">
+              <svg class="size-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+              </svg>
+            </div>
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-base font-semibold text-gray-900" id="dialog-title">¡Advertencia!</h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500" th:text="${res}"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+          <button id="confirmButton" type="button" class="inline-flex w-full justify-center rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-teal-500 sm:ml-3 sm:w-auto">Sí, continuar</button>
+          <button id="cancelButton" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Elementos del DOM
+  const openModalButton = document.getElementById('openModal');
+  const modal = document.getElementById('modal');
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalPanel = document.getElementById('modalPanel');
+  const cancelButton = document.getElementById('cancelButton');
+  const confirmButton = document.getElementById('confirmButton');
+  const form = document.querySelector('form');
+
+  // Función para abrir el modal
+  function openModal() {
+    modal.classList.remove('hidden');
+    modalBackdrop.classList.add('ease-out', 'duration-300', 'opacity-0');
+    modalPanel.classList.add('ease-out', 'duration-300', 'opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+    void modal.offsetWidth;
+    modalBackdrop.classList.remove('opacity-0');
+    modalBackdrop.classList.add('opacity-100');
+    modalPanel.classList.remove('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+    modalPanel.classList.add('opacity-100', 'translate-y-0', 'sm:scale-100');
+  }
+
+  // Función para cerrar el modal
+  function closeModal() {
+    modalBackdrop.classList.remove('ease-out', 'duration-300');
+    modalBackdrop.classList.add('ease-in', 'duration-200');
+    modalPanel.classList.remove('ease-out', 'duration-300');
+    modalPanel.classList.add('ease-in', 'duration-200');
+    modalBackdrop.classList.remove('opacity-100');
+    modalBackdrop.classList.add('opacity-0');
+    modalPanel.classList.remove('opacity-100', 'translate-y-0', 'sm:scale-100');
+    modalPanel.classList.add('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 200);
+  }
+
+  // Event listeners
+  openModalButton.addEventListener('click', openModal);
+  cancelButton.addEventListener('click', closeModal);
+  modalBackdrop.addEventListener('click', closeModal);
+
+  // Confirmar: envía el formulario
+  confirmButton.addEventListener('click', function() {
+    closeModal();
+    setTimeout(() => form.submit(), 200); // Espera a que cierre el modal
+  });
+
+  // Cerrar el modal con la tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+</script>
+  </body>
+</html>

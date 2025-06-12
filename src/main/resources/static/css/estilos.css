@@ -1,0 +1,198 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sección izquierda */
+.left {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.logo {
+  max-width: 200px;
+  margin-bottom: 20px; /* Elimina espacio innecesario debajo del logo */
+}
+
+.left h1 {
+  font-size: 85px;
+  padding-left: 10%;
+  padding-right: 10%;
+  color: #1E4944;
+  font-weight: 1000;
+  line-height: 1.2;
+  margin: 10px 0 0 0; /* solo un poco de espacio arriba si quieres */
+}
+
+.highlight {
+  background-color: #134e40;
+  color: #ffffff;
+  padding: 5px 10px;
+  display: inline-block;
+}
+
+
+/* Sección derecha */
+.right {
+  flex: 1;
+  background-color: #3aa89e;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.section-indicator {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.ver-registro {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background-color: #ffff;
+  color: #134e40;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.right h2 {
+  font-size: 100px;
+  font-weight: 800;
+  line-height: 1.0;
+  padding-left: 40px;
+  margin-bottom: 0px;
+}
+
+.pregunta {
+  margin-top: 20px;
+  font-size: 50px;
+  padding-left: 40px;
+  margin-bottom: 2px;
+  font-weight: 700;
+}
+
+.instrucciones {
+  font-size: 30px;
+  font-weight: 700;
+  opacity: 0.9;
+  padding-left: 40px;
+}
+
+.botones {
+  padding-left: 40px;
+  padding-right: 40px;
+  /* font-size: 100px; */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.opcion {
+  width: 100%; /* fuerza a que todos midan lo mismo */
+  text-align: center; /* asegura que el texto esté centrado */
+  background-color: #ffffff;
+  color: #134e40;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botones a {
+  display: block;
+  width: 100%;
+}
+
+.opcion:hover {
+  background-color: #e0f7f4;
+}
+
+.title{
+  font-size: 80px;
+  font-weight: 900;
+  line-height: 1.0;
+  text-align: center;  /*centra el titulo*/
+  margin-top: 156px; /*baja mas el titulo*/
+}
+
+.subtitle{
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.0;
+  text-align: left;  /*pone a la izquierda el subtitulo*/
+  margin: 92px; /*baja mas el titulo*/
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+  .left, .right {
+    flex: none;
+    width: 100%;
+    min-height: 300px;
+    padding: 20px;
+  }
+  .title {
+    font-size: 48px;
+    margin-top: 40px;
+  }
+  .subtitle {
+    font-size: 28px;
+    margin: 32px 0 0 0;
+  }
+  .logo {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 32px;
+    margin-top: 20px;
+  }
+  .subtitle {
+    font-size: 20px;
+    margin: 16px 0 0 0;
+  }
+  .logo {
+    max-width: 80px;
+  }
+  .container {
+    padding: 0;
+  }
+  .left, .right {
+    padding: 10px;
+    min-height: 150px;
+  }
+}
+
