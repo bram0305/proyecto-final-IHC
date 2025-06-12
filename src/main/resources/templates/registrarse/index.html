@@ -60,13 +60,6 @@
         style="background-color: #48a499"
       >
         <div class="w-full">
-          <!-- ALERTA DE VALIDACIÓN -->
-          <!-- <div th:if="${res}" class="mb-4">
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center" role="alert">
-              <span th:text="${res}"></span>
-            </div>
-          </div> -->
-          <!-- Formulario de Registro -->
           <form th:action="@{/registrarse/datos}" method="post" class="p-16 space-y-6">
             <div class="pb-7">
               <h3 class="text-6xl font-bold text-center text-white mb-6">
@@ -115,8 +108,7 @@
             </div>
             <div class="w-full justify-center items-center flex mt-6">
               <button
-                id="openModal"
-                type="button"
+                type="submit"
                 class="text-2xl px-10 bg-white font-bold py-2 rounded-lg hover:bg-teal-700 transition"
                 style="color: #1e4944"
               >
@@ -125,95 +117,22 @@
             </div>
           </form>
         </div>
-        
-      </div>
-    </div>
-    <script src="/js/script.js"></script>
-
-    <!-- Modal (inicialmente oculto) -->
-<div id="modal" class="relative z-10 hidden" aria-labelledby="dialog-title" role="dialog" aria-modal="true">
-  <div id="modalBackdrop" class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
-  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-      <div id="modalPanel" class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-          <div class="sm:flex sm:items-start">
-            <div class="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-teal-100 sm:mx-0 sm:size-10">
-              <svg class="size-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
-              </svg>
-            </div>
-            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-              <h3 class="text-base font-semibold text-gray-900" id="dialog-title">¡Advertencia!</h3>
-              <div class="mt-2">
-                <p class="text-sm text-gray-500" th:text="${res}"></p>
-              </div>
+        <!-- Modal alerta -->
+        <div th:if="${res}" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div class="relative bg-white w-[600px] h-[200px] p-6 rounded-lg shadow-lg flex flex-col justify-between">
+            <a th:href="@{/registrarse/}" class="absolute top-3 right-3 text-black-500 hover:text-red-600 text-2xl font-bold group">
+              <svg xmlns="http://www.w3.org/2000/svg" height="40px" class="transition-colors duration-200 group-hover:fill-red-600" viewBox="0 -960 960 960" width="40px" fill="#48A499"><path d="m249-183-66-66 231-231-231-231 66-66 231 231 231-231 66 66-231 231 231 231-66 66-231-231-231 231Z"/></svg>
+            </a>
+            <h2 th:text="${res == 'Puede continuar ingresando sus datos personales.' ? 'Registro en progreso...' : '⚠ ¡Advertencia!'}" class="text-4xl font-bold" style="color: #48a499;"></h2>
+            <p class="text-2xl" style="color: #1e4944;" th:text="${res}"></p>
+            <div class="text-center mt-4 flex justify-end">
+              <a th:href="${res == 'Puede continuar ingresando sus datos personales.'} ? @{/registrarse/datospersonales/} : @{/registrarse/}" class="text-xl font-semibold bg-teal-600/80 text-white px-6 py-2 rounded hover:bg-teal-800 transition">
+                ACEPTAR
+              </a>
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-          <button id="confirmButton" type="button" class="inline-flex w-full justify-center rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-teal-500 sm:ml-3 sm:w-auto">Sí, continuar</button>
-          <button id="cancelButton" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancelar</button>
-        </div>
       </div>
     </div>
-  </div>
-</div>
-
-<script>
-  // Elementos del DOM
-  const openModalButton = document.getElementById('openModal');
-  const modal = document.getElementById('modal');
-  const modalBackdrop = document.getElementById('modalBackdrop');
-  const modalPanel = document.getElementById('modalPanel');
-  const cancelButton = document.getElementById('cancelButton');
-  const confirmButton = document.getElementById('confirmButton');
-  const form = document.querySelector('form');
-
-  // Función para abrir el modal
-  function openModal() {
-    modal.classList.remove('hidden');
-    modalBackdrop.classList.add('ease-out', 'duration-300', 'opacity-0');
-    modalPanel.classList.add('ease-out', 'duration-300', 'opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
-    void modal.offsetWidth;
-    modalBackdrop.classList.remove('opacity-0');
-    modalBackdrop.classList.add('opacity-100');
-    modalPanel.classList.remove('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
-    modalPanel.classList.add('opacity-100', 'translate-y-0', 'sm:scale-100');
-  }
-
-  // Función para cerrar el modal
-  function closeModal() {
-    modalBackdrop.classList.remove('ease-out', 'duration-300');
-    modalBackdrop.classList.add('ease-in', 'duration-200');
-    modalPanel.classList.remove('ease-out', 'duration-300');
-    modalPanel.classList.add('ease-in', 'duration-200');
-    modalBackdrop.classList.remove('opacity-100');
-    modalBackdrop.classList.add('opacity-0');
-    modalPanel.classList.remove('opacity-100', 'translate-y-0', 'sm:scale-100');
-    modalPanel.classList.add('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
-    setTimeout(() => {
-      modal.classList.add('hidden');
-    }, 200);
-  }
-
-  // Event listeners
-  openModalButton.addEventListener('click', openModal);
-  cancelButton.addEventListener('click', closeModal);
-  modalBackdrop.addEventListener('click', closeModal);
-
-  // Confirmar: envía el formulario
-  confirmButton.addEventListener('click', function() {
-    closeModal();
-    setTimeout(() => form.submit(), 200); // Espera a que cierre el modal
-  });
-
-  // Cerrar el modal con la tecla Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-      closeModal();
-    }
-  });
-</script>
   </body>
 </html>
